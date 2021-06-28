@@ -20,6 +20,13 @@
     [v-cloak] {
       display: none;
     }
+
+    .el-col-11 {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 0 20px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 
@@ -94,7 +101,43 @@ const loopFn = (arr) => {
                   </el-col>
                 </el-row>
               </el-tab-pane>
-              <el-tab-pane label="插入排序">插入排序</el-tab-pane>
+              <el-tab-pane label="插入排序">
+                <el-row>
+                  <el-col :span="5">
+                    {{ sortGroup.insertData }}
+                  </el-col>
+                  <el-col :span="11">
+                    <pre>
+                      <code class="language-plaintext">
+const sortArr = [_arr[0]]
+const getIndex = (arr, e) => {
+  if (e < arr[0]) return 0
+  if (e >= arr[arr.length - 1]) return arr.length
+  let i = 0
+  for (; i < arr.length; i++) {
+    if (e >= arr[i] && e <= arr[i + 1]) {
+      break
+    }
+  }
+  return i + 1
+}
+for (let i = 1; i < _arr.length; i++) {
+  const searchIndex = getIndex(sortArr, _arr[i])
+  sortArr.splice(searchIndex, 0, _arr[i])
+}
+this.sortGroup.insertDataNew = sortArr
+                      </code>
+                    </pre>
+                  </el-col>
+                  <el-col :span="3" class="ta-c">
+                    <el-button size="small" type="primary" @click="insertSort(sortGroup.insertData)">排序
+                    </el-button>
+                  </el-col>
+                  <el-col :span="5">
+                    {{ sortGroup.insertDataNew }}
+                  </el-col>
+                </el-row>
+              </el-tab-pane>
             </el-tabs>
           </el-col>
         </el-row>
@@ -133,6 +176,8 @@ const loopFn = (arr) => {
             bubbleDataNew: [],
             quickData: [6, 1, 4, 5, 8, 2, 7, 3, 9],
             quickDataNew: [],
+            insertData: [6, 1, 4, 5, 8, 2, 7, 3, 9],
+            insertDataNew: [],
           }
         }
       },
@@ -167,6 +212,25 @@ const loopFn = (arr) => {
             return loopFn(left).concat([centerValue], loopFn(right))
           }
           this.sortGroup.quickDataNew = loopFn(arr)
+        },
+        insertSort(_arr) {
+          const sortArr = [_arr[0]]
+          const getIndex = (arr, e) => {
+            if (e < arr[0]) return 0
+            if (e >= arr[arr.length - 1]) return arr.length
+            let i = 0
+            for (; i < arr.length; i++) {
+              if (e >= arr[i] && e <= arr[i + 1]) {
+                break
+              }
+            }
+            return i + 1
+          }
+          for (let i = 1; i < _arr.length; i++) {
+            const searchIndex = getIndex(sortArr, _arr[i])
+            sortArr.splice(searchIndex, 0, _arr[i])
+          }
+          this.sortGroup.insertDataNew = sortArr
         }
       }
     })
