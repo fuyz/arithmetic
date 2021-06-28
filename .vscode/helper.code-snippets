@@ -1,0 +1,53 @@
+{
+  "Print to vue3": {
+    "prefix": "vb3",
+    "body": [
+        "<template>",
+        "<div></div>",
+        "</template>",
+        "",
+        "<script lang='ts'>",
+        "import {  defineComponent, reactive, toRefs } from 'vue'",
+        "export default defineComponent({",
+        " name: '$1',",
+        "setup: () => {",
+        "  let state = reactive({})",
+        "",
+        "  return { ...toRefs(state) }",
+        "  },",
+        "})",
+        "</script>",
+        "",
+        "<style lang='scss' scoped>",
+        "</style>",
+        ""
+    ],
+    "description": "Log output to console"
+  },
+  "Print to req": {
+		"prefix": "cow",
+		"body": [
+			"const $1 = async () => {",
+      "try {",
+			"const { success, data } = await $1(state.req)",
+      "if(success){",
+      "}",
+      "} catch (e) {",
+      "console.log(e)",
+      "}"
+		],
+		"description": "Log output to console result"
+	},
+  "Print to try": {
+		"prefix": "ty",
+		"body": [
+			"try {",
+       "",
+			"} catch (e) {",
+      "console.log(e)",
+      "}"
+		],
+		"description": "Log output to console result"
+	},
+
+}
