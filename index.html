@@ -60,7 +60,40 @@ for (let i = 0; i < arr.length - 1; i++) {
                   </el-col>
                 </el-row>
               </el-tab-pane>
-              <el-tab-pane label="冒泡排序">冒泡排序</el-tab-pane>
+              <el-tab-pane label="快速排序">
+                <el-row>
+                  <el-col :span="5">
+                    {{ sortGroup.bubbleData }}
+                  </el-col>
+                  <el-col :span="11">
+                    <pre>
+                      <code class="language-plaintext">
+const loopFn = (arr) => {
+  if (arr.length <= 1) return arr
+  const centerIndex = Math.floor(arr.length / 2)
+  const centerValue = arr.splice(centerIndex, 1)[0]
+  const [left, right] = [[], []]
+  arr.map((e, i) => {
+    if (e < centerValue) {
+      left.push(e)
+    } else {
+      right.push(e)
+    }
+  })
+  return loopFn(left).concat([centerValue], loopFn(right))
+}
+                      </code>
+                    </pre>
+                  </el-col>
+                  <el-col :span="3" class="ta-c">
+                    <el-button size="small" type="primary" @click="quickSort(sortGroup.quickData)">排序
+                    </el-button>
+                  </el-col>
+                  <el-col :span="5">
+                    {{ sortGroup.quickDataNew }}
+                  </el-col>
+                </el-row>
+              </el-tab-pane>
               <el-tab-pane label="插入排序">插入排序</el-tab-pane>
             </el-tabs>
           </el-col>
@@ -97,7 +130,9 @@ for (let i = 0; i < arr.length - 1; i++) {
           activeName: '1',
           sortGroup: {
             bubbleData: [6, 1, 4, 5, 8, 2, 7, 3, 9],
-            bubbleDataNew: []
+            bubbleDataNew: [],
+            quickData: [6, 1, 4, 5, 8, 2, 7, 3, 9],
+            quickDataNew: [],
           }
         }
       },
@@ -114,6 +149,24 @@ for (let i = 0; i < arr.length - 1; i++) {
             }
           }
           this.sortGroup.bubbleDataNew = arr
+        },
+        quickSort(_arr) {
+          const arr = JSON.parse(JSON.stringify(_arr))
+          const loopFn = (arr) => {
+            if (arr.length <= 1) return arr
+            const centerIndex = Math.floor(arr.length / 2)
+            const centerValue = arr.splice(centerIndex, 1)[0]
+            const [left, right] = [[], []]
+            arr.map((e, i) => {
+              if (e < centerValue) {
+                left.push(e)
+              } else {
+                right.push(e)
+              }
+            })
+            return loopFn(left).concat([centerValue], loopFn(right))
+          }
+          this.sortGroup.quickDataNew = loopFn(arr)
         }
       }
     })
