@@ -27,6 +27,7 @@
       padding: 0 20px;
       border-radius: 5px;
     }
+
   </style>
 </head>
 
@@ -159,11 +160,11 @@ this.sortGroup.insertDataNew = sortArr
 
   </div>
   <!-- import Vue before Element -->
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue@2.6.0/dist/vue.js"></script>
   <!-- 引入组件库 -->
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
   <script>
     new Vue({
       el: '#app',
@@ -181,10 +182,10 @@ this.sortGroup.insertDataNew = sortArr
           }
         }
       },
-      mounted() {
+      mounted () {
       },
       methods: {
-        bubbleSort(_arr) {
+        bubbleSort (_arr) {
           const arr = JSON.parse(JSON.stringify(_arr))
           for (let i = 0; i < arr.length - 1; i++) {
             for (let j = i + 1; j < arr.length - 1; j++) {
@@ -195,7 +196,7 @@ this.sortGroup.insertDataNew = sortArr
           }
           this.sortGroup.bubbleDataNew = arr
         },
-        quickSort(_arr) {
+        quickSort (_arr) {
           const arr = JSON.parse(JSON.stringify(_arr))
           const loopFn = (arr) => {
             if (arr.length <= 1) return arr
@@ -213,7 +214,7 @@ this.sortGroup.insertDataNew = sortArr
           }
           this.sortGroup.quickDataNew = loopFn(arr)
         },
-        insertSort(_arr) {
+        insertSort (_arr) {
           const sortArr = [_arr[0]]
           const getIndex = (arr, e) => {
             if (e < arr[0]) return 0
